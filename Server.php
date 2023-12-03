@@ -112,3 +112,68 @@ while (true){
                 $filename = __DIR__ . DIRECTORY_SEPARATOR . "dirs" . DIRECTORY_SEPARATOR . $cmd[1];
         
                 echo "Attempting to delete file: " . $filename . "\n";
+
+                // Check if the file exists before attempting to delete
+                if (file_exists($filename)) {
+                    if (unlink($filename)) {
+                        $output = "File deleted successfully.\n";
+                    } else {
+                        $output = "Error deleting file.\n";
+                    }
+                } else {
+                    $output = "File does not exist to delete.\n";
+                }
+            }
+        }
+    }
+    else if (str_starts_with($input, "CREATE")) {
+        if($client_address . '-' . $client_port != $admin){
+            $output = "This action requires admin permissions! \n";
+        }
+        else {
+            $cmd = explode(' ', $input);
+        
+            if (count($cmd) !== 2) {
+                $output = "Invalid CREATE command format. Usage: CREATE <filename>\n";
+            } else {
+                echo "Current working directory: " . getcwd() . "\n";
+        
+                // Construct the file path using the script's directory
+                $filename = DIR . DIRECTORY_SEPARATOR . "dirs" . DIRECTORY_SEPARATOR . $cmd[1];
+        
+                echo "Attempting to create file: " . $filename . "\n";
+        
+                // Check if the file already exists
+                if (file_exists($filename)) {
+                    $output = "File already exists.\n";
+                } else {
+                    // Attempt to create the file
+                    $f_pointer = fopen($filename, "w");
+        
+                    if ($f_pointer !== false) {
+                        fclose($f_pointer);
+                        $output = "File created successfully.\n";
+                    } else {
+                        $output = "Error creating file.\n";
+                    }
+                }
+            }
+        }
+    }
+    else if($input == "REQ_ADMIN"){
+        if($admin == ""){
+            $admin = $client_address . "-" . $client_port;
+            echo "The new admin is: $admin \n";
+            $output = "You have gained admin permissions! \n";
+        }
+        else{
+            $output = "There is another client with admin permissions at the moment! \n";
+        }
+    }
+
+    socket_write($spawn, $output, strlen ($output)) or die("Could not write output\n");
+    }
+}
+
+socket_close($socket);
+?>
