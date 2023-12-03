@@ -23,10 +23,10 @@ Lidhemi me serverin përmes socket_connect.
 ##### Dërgimi i Komandave:
 Përdorim socket_write për të dërguar komandat nga klienti te serveri.
 
-#####Pranimi i Përgjigjeve:
+##### Pranimi i Përgjigjeve:
 Përdorim socket_read për të pranuar përgjigjet nga serveri për secilën komandë.
 
-#####Mbyllja e Lidhjes:
+##### Mbyllja e Lidhjes:
 Përdorim komandën "CLOSE" për të mbyllur lidhjen me serverin.
 
 #### Komandat e Mundshme
