@@ -54,3 +54,61 @@ while (true){
         7. CREATE <file_name> - Generate a new file (admin authorization required) \n
         8. REQ_ADMIN - Request admin permissions \n";
     }
+
+        else if($input == "VIEW_FILES"){
+        $output = shell_exec("tree /f");
+    }
+    else if(str_starts_with($input, "OPEN")){
+        $cmd = explode(' ', $input);
+        $filename = ".\\dirs\\".$cmd[1];
+        if(file_exists($filename)){
+            $output = file_get_contents($filename)."\n";
+            if('' == $output){
+                $output = "File is empty \n";
+            }
+        }else{
+            $output = "File does not exist \n";
+        }
+    }
+    else if(str_starts_with($input, "WRITE")){
+        if($client_address . '-' . $client_port != $admin){
+            $output = "This action requires admin permissions! \n";
+        }
+        else {
+            $cmd = explode(' ', $input);
+            $filename = ".\\dirs\\".$cmd[1];
+            if(!isset($cmd[2])){
+                $output = "Provide data to be written!";
+            } else {
+                if(file_exists($filename)){
+                    $data = "\n";
+                    $f_pointer = fopen($filename,"a");
+                    for($i = 2; $i < count($cmd); $i++){
+                        $data .= $cmd[$i] . ' ';
+                    }
+                    fwrite($f_pointer, $data);
+                    $output = "File successfully edited! \n";
+                }
+                else {
+                    $output = "File does not exist! \n";
+                }
+            }
+        }
+    }
+    else if (str_starts_with($input, "DELETE")) {
+        if($client_address . '-' . $client_port != $admin){
+            $output = "This action requires admin permissions! \n";
+        }
+        else {
+            $cmd = explode(' ', $input);
+        
+            if (count($cmd) !== 2) {
+                $output = "Invalid DELETE command format. Usage: DELETE <filename>\n";
+            }
+            else {
+                echo "Current working directory: " . getcwd() . "\n";
+        
+                // Construct the file path using the script's directory
+                $filename = __DIR__ . DIRECTORY_SEPARATOR . "dirs" . DIRECTORY_SEPARATOR . $cmd[1];
+        
+                echo "Attempting to delete file: " . $filename . "\n";
