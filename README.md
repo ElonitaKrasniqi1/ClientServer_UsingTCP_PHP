@@ -15,6 +15,20 @@ Presim për lidhje të reja dhe krijojmë një soket të ri për secilin klient 
 Përdorim socket_read për të lexuar komandat e klientit.
 Implementojmë funksionalitete të ndryshme bazuar në komandat e pranuara.
 
+#### Klienti (Client.php)
+##### Krijimi i Klientit:
+Krijonjmë një klient përmes socket_create.
+Lidhemi me serverin përmes socket_connect.
+
+##### Dërgimi i Komandave:
+Përdorim socket_write për të dërguar komandat nga klienti te serveri.
+
+#####Pranimi i Përgjigjeve:
+Përdorim socket_read për të pranuar përgjigjet nga serveri për secilën komandë.
+
+#####Mbyllja e Lidhjes:
+Përdorim komandën "CLOSE" për të mbyllur lidhjen me serverin.
+
 #### Komandat e Mundshme
 - "GET": Shfaq një listë me komandat e disponueshme në server.
 - "VIEW_FILES": Shfaq strukturën e skedarëve në server.
