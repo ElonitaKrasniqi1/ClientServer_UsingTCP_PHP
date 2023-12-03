@@ -23,3 +23,9 @@ Implementojmë funksionalitete të ndryshme bazuar në komandat e pranuara.
 - "DELETE <file_name>": Fshij një skedar (kërkon privilegji admin).
 - "CREATE <file_name>": Krijo një skedar të ri (kërkon privilegji admin).
 - "REQ_ADMIN": Kërko privilegji admin nga serveri.
+
+Projekti u punua nga:
+- Elonita Krasniqi
+- Elvira Metaj
+- Endi Rashica
+- Erblin Kelmendi
