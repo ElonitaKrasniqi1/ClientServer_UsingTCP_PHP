@@ -16,10 +16,10 @@ Përdorim socket_read për të lexuar komandat e klientit.
 Implementojmë funksionalitete të ndryshme bazuar në komandat e pranuara.
 
 #### Komandat e Mundshme
-"GET": Shfaq një listë me komandat e disponueshme në server.
-"VIEW_FILES": Shfaq strukturën e skedarëve në server.
-"OPEN <file_name>": Shfaq përmbajtjen e një skedari.
-"WRITE <file_name> <content>": Shkruaj përmbajtjen e një skedari (kërkon privilegji admin).
-"DELETE <file_name>": Fshij një skedar (kërkon privilegji admin).
-"CREATE <file_name>": Krijo një skedar të ri (kërkon privilegji admin).
-"REQ_ADMIN": Kërko privilegji admin nga serveri.
+- "GET": Shfaq një listë me komandat e disponueshme në server.
+- "VIEW_FILES": Shfaq strukturën e skedarëve në server.
+- "OPEN <file_name>": Shfaq përmbajtjen e një skedari.
+- "WRITE <file_name> <content>": Shkruaj përmbajtjen e një skedari (kërkon privilegji admin).
+- "DELETE <file_name>": Fshij një skedar (kërkon privilegji admin).
+- "CREATE <file_name>": Krijo një skedar të ri (kërkon privilegji admin).
+- "REQ_ADMIN": Kërko privilegji admin nga serveri.
